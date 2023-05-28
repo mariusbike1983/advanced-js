@@ -17,13 +17,13 @@ function displayTodos() {
 function createTodo() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            let err = false;
+            let err = true;
             if (!err) {
                 const newTodo = { todo: 'Todo3' };
                 todos.push(newTodo);
                 resolve();
             } else {
-                reject();
+                reject('Some error occured');
             }
         }, 2000);
     });
@@ -31,16 +31,20 @@ function createTodo() {
 }
 
 async function main() {
-    document.getElementById('output').innerHTML = 'Loading some dummy data...';
-    await createTodo();
-    
-    // use fetchAPI to make an HTTP request and load some todos
-    document.getElementById('output').innerHTML = 'Loading some "real" todos...';
-    const response = await fetch("https://dummyjson.com/todos?limit=5");
-    const data = await response.json();
-    todos.push(...data.todos);
-    
-    displayTodos();
+    try {
+        document.getElementById('output').innerHTML = 'Loading some dummy data...';
+        await createTodo();
+        
+        // use fetchAPI to make an HTTP request and load some todos
+        document.getElementById('output').innerHTML = 'Loading some "real" todos...';
+        const response = await fetch("https://dummyjson.com/todos?limit=5");
+        const data = await response.json();
+        todos.push(...data.todos);
+        
+        displayTodos();
+    } catch(err) {
+        document.getElementById('output').innerHTML = err;
+    }
 }
 
 main();

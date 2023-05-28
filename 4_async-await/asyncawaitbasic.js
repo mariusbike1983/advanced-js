@@ -17,7 +17,7 @@ function displayTodos() {
 function createTodo() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            let err = true;
+            let err = false;
             if (!err) {
                 const newTodo = { todo: 'Todo3' };
                 todos.push(newTodo);
@@ -27,7 +27,6 @@ function createTodo() {
             }
         }, 2000);
     });
-    
 }
 
 async function main() {
@@ -38,10 +37,13 @@ async function main() {
         // use fetchAPI to make an HTTP request and load some todos
         document.getElementById('output').innerHTML = 'Loading some "real" todos...';
         const response = await fetch("https://dummyjson.com/todos?limit=5");
-        const data = await response.json();
-        todos.push(...data.todos);
-        
-        displayTodos();
+        if (response.status === 200) {
+            const data = await response.json();
+            todos.push(...data.todos);
+            displayTodos();
+        } else {
+            throw new Error('weird error');
+        }
     } catch(err) {
         document.getElementById('output').innerHTML = err;
     }

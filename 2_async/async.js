@@ -12,6 +12,7 @@ function fetchData(skip, callbackResolve, callbackReject) {
     request.send();
 }
 
+console.log("0");
 function main() {
     console.log("1");
     fetchData(0, data => {

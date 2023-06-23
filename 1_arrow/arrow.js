@@ -33,22 +33,4 @@ function main() {
     });
 }
 
-//smain();
-
-this.greeting = "Hi!";
-console.log("outside before: ", this.greeting);
-function testFunctionContext() {
-    this.greeting = "Hello!";
-    console.log("func: ", this.greeting);
-}
-testFunctionContext();
-console.log("outside after: ", this.greeting);
-
-// this.greeting = "Hi!";
-// console.log("outside before: ", this.greeting);
-// const testArrowFunctionContext = () => {
-//     this.greeting = "Hello!";
-//     console.log("func: ", this.greeting);
-// }
-// testArrowFunctionContext();
-// console.log("outside after: ", this.greeting);
+main();

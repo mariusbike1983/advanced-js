@@ -23,10 +23,11 @@ function createTodo(callback) {
 }
 
 document.getElementById('output').innerHTML = 'Loading...';
+
 // following code would not really work unless we syncronize the timeouts to make sure 
 // that display is triggered AFTER create
-    //createTodo();
+    // createTodo();
     // displayTodos();
 
 // by using callbacks we can safely "chain" the calls, without any need of timeout synchronization
-createTodo(displayTodos);
+//createTodo(displayTodos);
